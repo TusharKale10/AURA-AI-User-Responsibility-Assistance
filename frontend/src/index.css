@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@theme {
+  --color-stone-50:  #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius-xl:  0.875rem;
+  --radius-2xl: 1.25rem;
+}
+
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+  --aura-bg:            #FAFAF8;
+  --aura-bg-elevated:   #F4F4F1;
+  --aura-card:          #FFFFFF;
+  --aura-card-hover:    #FEFEFE;
+
+  --aura-text-1:        #18181B;
+  --aura-text-2:        #52525B;
+  --aura-text-3:        #A1A1AA;
+
+  --aura-border:        rgba(0, 0, 0, 0.07);
+  --aura-border-hover:  rgba(0, 0, 0, 0.13);
+  --aura-border-focus:  rgba(2, 132, 199, 0.45);
+
+  --aura-shadow-xs:     0 1px 2px rgba(0,0,0,0.04);
+  --aura-shadow-sm:     0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --aura-shadow-md:     0 4px 12px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.04);
+  --aura-shadow-hover:  0 12px 32px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+  --aura-shadow-select: 0 8px 24px rgba(0,0,0,0.08), 0 0 0 2px rgba(2,132,199,0.22);
+
+  --aura-accent:        #0284c7;
+  --aura-accent-soft:   rgba(2,132,199,0.08);
+  --aura-accent-gradient: linear-gradient(135deg, #0d2d5e 0%, #1255b0 30%, #0284c7 60%, #06b6d4 85%, #7dd3fc 100%);
+
+  --aura-sidebar:       #FFFFFF;
+  --aura-sidebar-item:  rgba(0,0,0,0.05);
+
+  --ease-spring:        cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:        cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --aura-bg:            #111110;
+    --aura-bg-elevated:   #1A1A18;
+    --aura-card:          #1C1C1A;
+    --aura-card-hover:    #242422;
+
+    --aura-text-1:        #F4F4F2;
+    --aura-text-2:        #A1A1AA;
+    --aura-text-3:        #6B6B76;
+
+    --aura-border:        rgba(255,255,255,0.08);
+    --aura-border-hover:  rgba(255,255,255,0.14);
+
+    --aura-shadow-xs:     0 1px 2px rgba(0,0,0,0.25);
+    --aura-shadow-sm:     0 1px 3px rgba(0,0,0,0.35), 0 1px 2px rgba(0,0,0,0.25);
+    --aura-shadow-md:     0 4px 12px rgba(0,0,0,0.4),  0 2px 4px rgba(0,0,0,0.25);
+    --aura-shadow-hover:  0 12px 32px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.35);
+    --aura-shadow-select: 0 8px 24px rgba(0,0,0,0.45), 0 0 0 2px rgba(2,132,199,0.28);
+
+    --aura-sidebar:       #161614;
+    --aura-sidebar-item:  rgba(255,255,255,0.07);
+  }
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: var(--aura-bg);
+  color: var(--aura-text-1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  line-height: 1.5;
+}
+
+#root { min-height: 100vh; }
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar            { width: 5px; height: 5px; }
+::-webkit-scrollbar-track      { background: transparent; }
+::-webkit-scrollbar-thumb      { background: rgba(0,0,0,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,0.22); }
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb      { background: rgba(255,255,255,0.12); }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--aura-border-focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ─── Card system ────────────────────────────────────────────── */
+.aura-card {
+  background-color: var(--aura-card);
+  border-radius: 14px;
+  border: 1px solid var(--aura-border);
+  box-shadow: var(--aura-shadow-sm);
+  transition:
+    box-shadow   250ms var(--ease-smooth),
+    border-color 250ms var(--ease-smooth),
+    background-color 200ms ease;
+}
+
+.aura-card-interactive {
+  cursor: pointer;
+  user-select: none;
+}
+.aura-card-interactive:hover {
+  box-shadow: var(--aura-shadow-hover);
+  border-color: var(--aura-border-hover);
+}
+
+.aura-card-selected {
+  box-shadow: var(--aura-shadow-select) !important;
+  border-color: rgba(2,132,199,0.28) !important;
+}
+
+/* ─── Button enhancement ─────────────────────────────────────── */
+.aura-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition:
+    background-color 150ms ease,
+    box-shadow       150ms ease,
+    opacity          150ms ease,
+    transform        120ms ease;
+  cursor: pointer;
+  user-select: none;
+}
+.aura-btn:active { transform: scale(0.975); }
+
+.aura-btn-primary {
+  background-color: #18181B;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.10);
+}
+.aura-btn-primary:hover {
+  background-color: #27272A;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.10);
+}
+@media (prefers-color-scheme: dark) {
+  .aura-btn-primary { background-color: #F4F4F2; color: #18181B; }
+  .aura-btn-primary:hover { background-color: #E4E4E2; }
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────── */
+.aura-sidebar {
+  background-color: var(--aura-sidebar);
+  border-right: 1px solid var(--aura-border);
+}
+
+.aura-nav-item {
+  position: relative;
+  border-radius: 10px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.aura-nav-item.active {
+  background-color: var(--aura-sidebar-item);
+}
+.aura-nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--aura-accent);
+  border-radius: 0 3px 3px 0;
+  transition: opacity 200ms ease;
+}
+.aura-nav-item:not(.active):hover {
+  background-color: var(--aura-sidebar-item);
+}
+
+/* ─── Input enhancement ──────────────────────────────────────── */
+.aura-input {
+  background-color: var(--aura-card);
+  border: 1px solid var(--aura-border);
+  border-radius: 10px;
+  color: var(--aura-text-1);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  font-size: 0.875rem;
+}
+.aura-input::placeholder { color: var(--aura-text-3); }
+.aura-input:focus {
+  outline: none;
+  border-color: var(--aura-border-focus);
+  box-shadow: 0 0 0 3px rgba(2,132,199,0.10);
+}
+
+/* ─── Gradient text ──────────────────────────────────────────── */
+.aura-gradient-text {
+  background: linear-gradient(135deg, #0d2d5e 0%, #1255b0 35%, #0284c7 65%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Page headers ───────────────────────────────────────────── */
+.aura-page-title {
+  font-size: 1.375rem;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #0d2d5e 0%, #1255b0 35%, #0284c7 65%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Stat accent blocks ─────────────────────────────────────── */
+.aura-stat-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Micro-animation helpers ────────────────────────────────── */
+@keyframes aura-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aura-scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes aura-slide-right {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.aura-fade-up  { animation: aura-fade-up  0.35s var(--ease-spring) both; }
+.aura-scale-in { animation: aura-scale-in 0.22s var(--ease-spring) both; }
+
+/* ─── Utility ────────────────────────────────────────────────── */
+.text-balance { text-wrap: balance; }
+
+/* Smooth icon hover */
+.aura-icon-hover {
+  transition: transform 200ms var(--ease-spring), color 150ms ease;
+}
+.aura-icon-hover:hover { transform: scale(1.12); }
