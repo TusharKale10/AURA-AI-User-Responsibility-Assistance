@@ -84,7 +84,7 @@ export default function TasksPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h1 className="text-2xl font-semibold text-stone-900">Tasks</h1>
           <p className="text-sm text-stone-400 mt-0.5">{tasks.length} total tasks</p>

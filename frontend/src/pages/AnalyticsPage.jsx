@@ -61,7 +61,7 @@ export default function AnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h1 className="text-2xl font-semibold text-stone-900">Analytics</h1>
           <p className="text-sm text-stone-400 mt-0.5">Productivity trends, patterns, and AI insights from your last 30 days.</p>
@@ -74,7 +74,7 @@ export default function AnalyticsPage() {
       {/* AI Weekly Report */}
       {report && (
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
-          <Card className="p-5 bg-stone-900 text-white">
+          <Card className="p-5 text-white" style={{ backgroundColor: '#1c1917' }}>
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={14} className="text-stone-300" />
               <p className="text-xs font-semibold text-stone-300 uppercase tracking-wider">Weekly AI Report</p>
@@ -98,7 +98,7 @@ export default function AnalyticsPage() {
       </div>
 
       {productivity && (
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <Card className="p-4 text-center">
             <p className="text-3xl font-bold text-stone-900">{productivity.productivityScore}</p>
             <p className="text-xs text-stone-400 mt-1">Productivity Score</p>

@@ -59,7 +59,7 @@ export default function TaskForm({ initialData, onSubmit, loading, onCancel }) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           label="Deadline"
           type="datetime-local"
@@ -78,7 +78,7 @@ export default function TaskForm({ initialData, onSubmit, loading, onCancel }) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Select label="Category" value={form.category} onChange={(e) => set('category', e.target.value)}>
           <option value="work">Work</option>
           <option value="study">Study</option>

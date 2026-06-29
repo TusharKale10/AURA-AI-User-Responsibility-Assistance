@@ -2,9 +2,8 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, CheckSquare, Zap, BookOpen, Target, LogOut,
-  Sparkles, BarChart2, GitBranch, Library, Activity, Settings,
+  Sparkles, BarChart2, GitBranch, Library, Activity, Settings, X,
 } from 'lucide-react';
-
 import { useAuth } from '../../context/AuthContext';
 
 const primary = [
@@ -24,9 +23,10 @@ const intelligence = [
   { to: '/dna',          icon: Zap,        label: 'Productivity DNA' },
 ];
 
-const NavItem = ({ to, icon: Icon, label }) => (
+const NavItem = ({ to, icon: Icon, label, onClose }) => (
   <NavLink
     to={to}
+    onClick={onClose}
     className={({ isActive }) =>
       `aura-nav-item group flex items-center gap-3 px-3 py-2.5 text-sm font-medium ${
         isActive ? 'active text-zinc-900' : 'text-zinc-500'
@@ -79,15 +79,15 @@ function Avatar({ user }) {
   );
 }
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   return (
-    <aside className="aura-sidebar w-60 min-h-screen flex flex-col fixed left-0 top-0 z-40 overflow-y-auto">
-      {/* Brand */}
-      <div className="px-5 pt-5 pb-4 flex-shrink-0">
-        <Link to="/dashboard" className="flex items-center gap-2.5">
+    <aside className="aura-sidebar w-60 h-screen flex flex-col overflow-y-auto">
+      {/* Brand + mobile close */}
+      <div className="px-5 pt-5 pb-4 flex-shrink-0 flex items-center justify-between">
+        <Link to="/dashboard" onClick={onClose} className="flex items-center gap-2.5">
           <img src="/AURA.jpg" alt="AURA" className="w-8 h-8 rounded-lg object-contain flex-shrink-0" />
           <div>
             <span className="text-sm font-bold tracking-tight" style={{
@@ -97,24 +97,33 @@ export default function Sidebar() {
             <p className="text-[9px] text-zinc-400 leading-none mt-0.5 font-medium">AI User Responsibility Assistance</p>
           </div>
         </Link>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="md:hidden p-1.5 rounded-lg hover:bg-zinc-100 transition-colors text-zinc-400"
+          >
+            <X size={16} />
+          </button>
+        )}
       </div>
 
       <div className="mx-4 border-t border-black/[0.06] mb-2" />
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-1 space-y-0.5">
-        {primary.map((item) => <NavItem key={item.to} {...item} />)}
+        {primary.map((item) => <NavItem key={item.to} {...item} onClose={onClose} />)}
 
         <div className="pt-4 pb-1.5 px-3">
           <p className="text-[9px] font-semibold text-zinc-400 uppercase tracking-[0.09em]">Intelligence</p>
         </div>
-        {intelligence.map((item) => <NavItem key={item.to} {...item} />)}
+        {intelligence.map((item) => <NavItem key={item.to} {...item} onClose={onClose} />)}
       </nav>
 
       {/* User */}
       <div className="px-3 py-3 border-t border-black/[0.06] flex-shrink-0 mt-2">
         <Link
           to="/profile"
+          onClick={onClose}
           className="group flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-zinc-50 transition-colors mb-1"
         >
           <Avatar user={user} />
@@ -130,7 +139,7 @@ export default function Sidebar() {
         </Link>
 
         <button
-          onClick={() => { logout(); navigate('/login'); }}
+          onClick={() => { logout(); navigate('/login'); onClose?.(); }}
           className="flex items-center gap-3 w-full px-3 py-2 rounded-[10px] text-[13px] font-medium text-zinc-400 hover:bg-rose-50 hover:text-rose-600 transition-colors duration-150"
         >
           <LogOut size={14} />

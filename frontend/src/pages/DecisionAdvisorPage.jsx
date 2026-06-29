@@ -163,7 +163,7 @@ export default function DecisionAdvisorPage() {
                     </div>
                   )}
 
-                  <div className="grid grid-cols-3 gap-3 pt-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                     {result.estimatedImpact && (
                       <div className="bg-stone-50 rounded-xl p-3 text-center">
                         <p className="text-xs text-stone-400 mb-1">Career Impact</p>

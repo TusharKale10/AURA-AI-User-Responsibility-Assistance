@@ -63,7 +63,7 @@ export default function ProductivityDNAPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h1 className="text-2xl font-semibold text-stone-900">Productivity DNA</h1>
           <p className="text-sm text-stone-400 mt-0.5">Your personalized productivity profile built from your last 30 days.</p>
@@ -80,7 +80,7 @@ export default function ProductivityDNAPage() {
           {/* AI Insight Banner */}
           {dna.aiInsights && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <Card className="p-5 bg-stone-900 text-white">
+              <Card className="p-5 text-white" style={{ backgroundColor: '#1c1917' }}>
                 <div className="flex items-center gap-2 mb-2">
                   <Zap size={14} className="text-stone-300" />
                   <p className="text-xs font-semibold text-stone-300 uppercase tracking-wider">Your DNA Insight</p>

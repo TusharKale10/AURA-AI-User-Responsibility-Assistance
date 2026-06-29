@@ -93,7 +93,7 @@ export default function DashboardPage() {
     <motion.div variants={stagger} initial="hidden" animate="visible" className="space-y-5">
 
       {/* Header */}
-      <motion.div variants={item} className="flex items-center justify-between">
+      <motion.div variants={item} className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h1 className="aura-page-title">
             <span style={{
@@ -113,8 +113,8 @@ export default function DashboardPage() {
       </motion.div>
 
       {/* Mission + Progress */}
-      <motion.div variants={item} className="grid grid-cols-3 gap-4">
-        <div className="col-span-2" style={{ minHeight: 148 }}>
+      <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="md:col-span-2" style={{ minHeight: 148 }}>
           <MissionCard mission={todayMission ? {
             task: todayMission,
             statement: todayMission.title,
@@ -136,7 +136,7 @@ export default function DashboardPage() {
       </motion.div>
 
       {/* Stat row */}
-      <motion.div variants={item} className="grid grid-cols-3 gap-4">
+      <motion.div variants={item} className="grid grid-cols-3 sm:grid-cols-3 gap-3 sm:gap-4">
         <StatCard icon={TrendingUp}    label="Active Tasks"  value={stats?.totalActive ?? 0}    color="blue"  />
         <StatCard icon={CheckCircle2}  label="Done Today"    value={stats?.completedToday ?? 0}  color="green" />
         <StatCard icon={AlertTriangle} label="High Risk"     value={stats?.highRiskCount ?? 0}   color="red"   />
@@ -161,7 +161,7 @@ export default function DashboardPage() {
                 </div>
                 <ArrowRight size={14} className="opacity-40" />
               </div>
-              <div className="grid grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div>
                   <p className="text-2xl font-bold">{dna.metrics?.completionRate || 0}%</p>
                   <p className="text-[11px] text-white/40 mt-0.5">Completion</p>
@@ -190,7 +190,7 @@ export default function DashboardPage() {
       )}
 
       {/* Priority tasks + Risk alerts */}
-      <motion.div variants={item} className="grid grid-cols-2 gap-4">
+      <motion.div variants={item} className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[13px] font-semibold" style={{ color: 'var(--aura-text-1)' }}>Priority Tasks</h2>

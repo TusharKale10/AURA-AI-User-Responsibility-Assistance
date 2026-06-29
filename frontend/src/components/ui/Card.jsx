@@ -5,6 +5,7 @@ const spring = { type: 'spring', stiffness: 420, damping: 28 };
 export default function Card({
   children,
   className = '',
+  style,
   hover = false,
   onClick,
   selected = false,
@@ -21,6 +22,7 @@ export default function Card({
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick(e) : undefined}
+      style={style}
       className={[
         'aura-card',
         isInteractive && 'aura-card-interactive',
