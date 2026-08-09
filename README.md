@@ -22,7 +22,13 @@
 
 <br/>
 
-[🐛 Report Bug](https://github.com/TusharKale10/AURA-AI-User-Responsibility-Assistance/issues) · [✨ Request Feature](https://github.com/TusharKale10/AURA-AI-User-Responsibility-Assistance/issues)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Try_AURA-0284c7?style=for-the-badge&logo=vercel&logoColor=white)](https://aura-ai-user-responsibility-assista.vercel.app/)
+
+<sub>Hosted on Vercel + Render free tier — the first request may take up to a minute while the backend wakes up.</sub>
+
+<br/>
+
+[🚀 Live Demo](https://aura-ai-user-responsibility-assista.vercel.app/) · [🐛 Report Bug](https://github.com/TusharKale10/AURA-AI-User-Responsibility-Assistance/issues) · [✨ Request Feature](https://github.com/TusharKale10/AURA-AI-User-Responsibility-Assistance/issues)
 
 </div>
 
