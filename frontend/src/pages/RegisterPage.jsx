@@ -98,7 +98,7 @@ export default function RegisterPage() {
       </div>
 
       {/* ── Right panel — form ── */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-8 bg-white">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-8 bg-white" style={{ colorScheme: 'light' }}>
         <motion.div className="w-full max-w-sm"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}>
