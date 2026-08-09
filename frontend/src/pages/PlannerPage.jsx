@@ -153,7 +153,7 @@ export default function PlannerPage() {
                 <p className="text-xs text-emerald-600 mt-0.5">Head to Tasks to see your new plan.</p>
               </div>
             ) : (
-              <div className="bg-stone-50 border border-stone-200 rounded-2xl p-4 space-y-3">
+              <div className="bg-stone-50 border border-stone-200 rounded-2xl p-4 space-y-3" style={{ colorScheme: 'light' }}>
                 <p className="text-sm font-medium text-stone-700">Set a target deadline</p>
                 <div className="flex gap-3">
                   <input

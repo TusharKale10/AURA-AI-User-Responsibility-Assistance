@@ -196,7 +196,7 @@ export default function GoalsPage() {
                         ))}
 
                         {addingMilestoneTo === goal._id ? (
-                          <div className="mt-2 space-y-2 bg-stone-50 rounded-xl p-3 border border-stone-200">
+                          <div className="mt-2 space-y-2 bg-stone-50 rounded-xl p-3 border border-stone-200" style={{ colorScheme: 'light' }}>
                             <input placeholder="Milestone title *" value={msForm.title} onChange={(e) => setMsForm((f) => ({ ...f, title: e.target.value }))}
                               className="w-full text-sm px-3 py-1.5 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-900/10 bg-white" />
                             <input placeholder="Description (optional)" value={msForm.description} onChange={(e) => setMsForm((f) => ({ ...f, description: e.target.value }))}

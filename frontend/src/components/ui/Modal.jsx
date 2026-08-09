@@ -30,6 +30,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' })
               border border-black/[0.07]
               shadow-[0_24px_48px_rgba(0,0,0,0.14),0_8px_16px_rgba(0,0,0,0.08)]
             `}
+            style={{ colorScheme: 'light' }}
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-stone-100/80">

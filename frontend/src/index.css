@@ -99,16 +99,11 @@ body {
 ::-webkit-scrollbar-track      { background: transparent; }
 ::-webkit-scrollbar-thumb      { background: rgba(0,0,0,0.12); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,0.22); }
-   @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   ::-webkit-scrollbar-thumb      { background: rgba(255,255,255,0.12); }
   ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
-
-  input[type="date"]::-webkit-calendar-picker-indicator,
-  input[type="datetime-local"]::-webkit-calendar-picker-indicator,
-  input[type="time"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-  }
 }
+
 /* ─── Focus ring ─────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--aura-border-focus);
@@ -214,6 +209,13 @@ body {
   font-size: 0.875rem;
 }
 .aura-input::placeholder { color: var(--aura-text-3); }
+
+/* Native picker icon is dark by default — only invert it on themed (dark) inputs,
+   never on the hard-coded white surfaces where it would vanish. */
+@media (prefers-color-scheme: dark) {
+  .aura-input::-webkit-calendar-picker-indicator { filter: invert(1); }
+}
+
 .aura-input:focus {
   outline: none;
   border-color: var(--aura-border-focus);
